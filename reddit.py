@@ -5,7 +5,7 @@ import scrapy
 
 class RedditSpider(scrapy.Spider):
     def __init__(self, query):
-        self.name = "wsb_spider"
+        self.name = 'wsb_spider'
         self.query = query
 
     def start_requests(self):
