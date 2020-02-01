@@ -18,7 +18,10 @@ def GetTweets(searchTerm):
             endIndex = initialText.find("https")
             linklessText = initialText[0:endIndex]
             tweetTextList.append(linklessText)
-    return tweetTextList
+    toReturn = ""
+    for string in tweetTextList:
+        toReturn+=str(string)
+    return toReturn
 
 import concurrent.futures
 
