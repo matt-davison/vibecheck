@@ -1,11 +1,11 @@
 from twython import Twython
 import datetime
 def GetTweets(searchTerm):
-    APP_KEY = 'zI15R3JccQKrtPR1l9siC4K9q'
-    APP_SECRET = 'lQQCH7ZLusQqJC8QSk3CG5DS7tTzWHHjgkpdasd0he3a4JTBLe'
-    twitter = Twython(APP_KEY, APP_SECRET, oauth_version=2)
+    dank = 'zI15R3JccQKrtPR1l9siC4K9q'
+    meme = 'lQQCH7ZLusQqJC8QSk3CG5DS7tTzWHHjgkpdasd0he3a4JTBLe'
+    twitter = Twython(dank, meme, oauth_version=2)
     ACCESS_TOKEN = twitter.obtain_access_token()
-    twitter = Twython(APP_KEY, access_token=ACCESS_TOKEN)
+    twitter = Twython(dank, access_token=ACCESS_TOKEN)
     query=searchTerm
     searchResults = []
     tweetTextList = []
