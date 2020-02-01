@@ -2,11 +2,11 @@
 # Scraper Demo
 import scrapy
 
-
 class RedditSpider(scrapy.Spider):
     def __init__(self, query):
         self.name = 'wsb_spider'
         self.query = query
+        self.search_url = 'https://old.reddit.com/r/all/search?q='
 
     def start_requests(self):
         search_url = 'https://old.reddit.com/r/all/search?q='
