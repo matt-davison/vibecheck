@@ -1,11 +1,6 @@
 import concurrent.futures
-import os
-from queue import Queue
-
 
 def finQuery(query):
-    ret = []
-
     def scrapeBloomberg():
         #do scraping here
         scrapeData = ""
@@ -17,6 +12,7 @@ def finQuery(query):
         #end add thread
 
         #add results to return string
+        ret = []
         ret.append(bloomberg.result())
         
     return ret

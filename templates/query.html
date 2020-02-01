@@ -3,14 +3,19 @@
     <head>
     <title>Vibe Check</title>
     <meta charset="utf-8"/>
-    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"/>
     </head>
     <body>
-        <h1>Vibe Checker.</h1>
-        {% if topic%}
-            The topic <em>{{topic}}</em> is viewed
+        <h1>Vibe Checker - check the vibe.</h1>
+        <h2>
+        {% if query%}
+            The topic  <em>{{query}}</em>  is viewed  <em>{{overall}}</em>.
         {% else %}
-            Please enter a topic
+            Please enter a topic below.
         {% endif %}
+        </h2>
+        <form action="/" method="get">
+            <input type="text" name ="query" placeholder="try me!" value="{{query|default("", true)}}"/>
+        </form>
     </body>
 </html>
