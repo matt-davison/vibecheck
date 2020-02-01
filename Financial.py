@@ -4,9 +4,11 @@ from newsapi import NewsApiClient
 def finQuery(query):
     def getFinancial():
         api = NewsApiClient(api_key='64c70df4109b49529da4fa0dbbf949e1')
+
         all_headlines = ''
+
         for pageNum in range(1,6):
-            all_articles = api.get_everything(q=query, page=pageNum).get('articles')
+            all_articles = api.get_everything(q=query, page=pageNum, domains='cnbc.com, bloomberg.com, forbes.com').get('articles')
 
             for article in all_articles:
                 headline = article.get('title')
@@ -26,4 +28,3 @@ def finQuery(query):
     ret = list()
     ret.append(getFinancial())
     return ret
-    

@@ -38,6 +38,7 @@ def pubQuery(query):
         ret.append(tweets.result())
 
     '''
+    ret = list()
     ret.append(getTweets())
     return ret
 
