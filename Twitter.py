@@ -10,7 +10,7 @@ def GetTweets(searchTerm):
     searchResults = []
     tweetTextList = []
     for x in range (0, 14):
-        searchResults.append(twitter.search(q=query, result_type='popular', until=str(datetime.date.today()-datetime.timedelta(x))))
+        searchResults.append(twitter.search(lang='en', q=query, result_type='popular', until=str(datetime.date.today()-datetime.timedelta(x))))
     for x in range(0, len(searchResults)):
         for y in range(0, len(searchResults[x].get('statuses'))):
             initialText = searchResults[x].get('statuses')[y].get('text')
@@ -20,7 +20,7 @@ def GetTweets(searchTerm):
     return tweetTextList
 
 
-print(GetTweets('iran'))
+print(GetTweets('banana'))
 
 
 
