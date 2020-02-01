@@ -5,13 +5,23 @@ from News import newsQuery
 from Financial import finQuery
 from textblob import TextBlob
 
+VERY_THRES = 0.4
+THRES = 0.15
+SCALE = 3.5
+BALANCE = -.4
+
 def getSentiment(category):
 #simple mean of a category's scores
     score = 0.0
     for testimony in category:
         testimonial = TextBlob(testimony)
         score += testimonial.sentiment.polarity
-    return score/len(category)
+    res = score/len(category) * SCALE + BALANCE
+    if res > 1.0:
+        res = 1.0
+    elif res < -1.0:
+        res = -1.0
+    return res
 
 app = Flask(__name__)
 
@@ -22,23 +32,23 @@ def query_template():
         pubScore = getSentiment(pubQuery(queryReq))
         newsScore = getSentiment(newsQuery(queryReq))
         finScore = getSentiment(finQuery(queryReq))
-        overallScore = pubScore + newsScore + finScore
+        overallScore = (pubScore + newsScore + finScore) / 3
     else:
         pubScore = 0.0
         newsScore = 0.0
         finScore = 0.0
         overallScore = 0.0
-    if (overallScore >= 0.7):
+    if (overallScore >= VERY_THRES):
         overall = "very positively"
-    elif (overallScore >= 0.2):
+    elif (overallScore >= THRES):
         overall = "positively"
-    elif (overallScore <= -0.7):
+    elif (overallScore <= -1*VERY_THRES):
         overall = "very negatively"
-    elif (overallScore <= -0.2):
+    elif (overallScore <= -1*THRES):
         overall = "negatively"
     else:
         overall = "neutrally"
-    data = {'pubScore': pubScore, 'newsScore': newsScore, 'finScore': finScore}
+    data = {'pubScore': pubScore, 'newsScore': newsScore, 'finScore': finScore, 'VERY_THRESH': VERY_THRES, 'OP_THRESH': THRES}
     return render_template('query.html', query=queryReq, overall=overall, data=data)
 
 if __name__ == '__main__':

@@ -54,13 +54,40 @@
                 ctx.fillStyle = 'white';
                 //ctx.font = getFont();
                 ctx.font = "20px Tahoma";
-                ctx.fillText("   Public Opinion", rectL-157, pubRectT+rectHeight/3);
-                ctx.fillText({{ data.pubScore }}, rectL-40, pubRectT+rectHeight*2/3);
-                ctx.fillText("    News Opinion", rectL-160, newsRectT+rectHeight/3);
-                ctx.fillText({{ data.newsScore }}, rectL-40, newsRectT+rectHeight*2/3);
-                ctx.fillText("Financial Opinion", rectL-163, finRectT+rectHeight/3);
-                ctx.fillText({{ data.finScore }}, rectL-40, finRectT+rectHeight*2/3);
+                ctx.fillText("   Public Opinion", rectL-157, pubRectT+rectHeight/3-5);
+                ctx.fillText(Math.round(({{ data.pubScore }}+1)*50)+"%", rectL-139, pubRectT+rectHeight*2/3-5);
+                
+                ctx.fillText("    News Opinion", rectL-166, newsRectT+rectHeight/3-5);
+                ctx.fillText(Math.round(({{ data.newsScore }}+1)*50)+"%", rectL-140, newsRectT+rectHeight*2/3-5);
+
+                ctx.fillText("Financial Opinion", rectL-163, finRectT+rectHeight/3-5);
+                ctx.fillText(Math.round(({{ data.finScore }}+1)*50)+"%", rectL-164, finRectT+rectHeight*2/3-5);
+                
+                addSentiment()
                 }
+            function getSentiment(rating) {
+                if (getVar("query")){
+                if (rating >= {{data.VERY_THRESH}}){
+                    return "Very Positive"
+                } else if (rating >= {{data.OP_THRESH}}) {
+                    return "Positive"
+                } else if (rating <= {{data.VERY_THRESH}}*-1) {
+                    return "Very Negative"
+                } else if (rating <= {{data.OP_THRESH}}*-1) {
+                    return "Negative"
+                } else {
+                    return "Neutral"
+                }
+            }
+            }
+            function addSentiment() {
+                if (getVar("query")){
+                ctx.fillText(getSentiment({{data.pubScore}}), rectL-139, pubRectT+rectHeight-5);
+                ctx.fillText(getSentiment({{data.newsScore}}), rectL-140, newsRectT+rectHeight-5);
+                ctx.fillText(getSentiment({{data.finScore}}), rectL-164, finRectT+rectHeight-5);
+                }
+            }
+            
             }
             function resizeCanvas() {
                 c.width = window.innerWidth;

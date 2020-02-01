@@ -3,7 +3,7 @@ from newsapi import NewsApiClient
 
 def finQuery(query):
     def getFinancial():
-        api = NewsApiClient(api_key='64c70df4109b49529da4fa0dbbf949e1')
+        api = NewsApiClient(api_key='c3dc12d37982432690b33c0e91e62a91')
 
         all_headlines = ''
 
