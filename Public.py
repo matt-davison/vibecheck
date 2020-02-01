@@ -6,13 +6,12 @@ import concurrent.futures
 
 def pubQuery(query):
     
-    def getTweets(searchTerm):
+    def getTweets():
         dank = 'zI15R3JccQKrtPR1l9siC4K9q'
         meme = 'lQQCH7ZLusQqJC8QSk3CG5DS7tTzWHHjgkpdasd0he3a4JTBLe'
         twitter = Twython(dank, meme, oauth_version=2)
         ACCESS_TOKEN = twitter.obtain_access_token()
         twitter = Twython(dank, access_token=ACCESS_TOKEN)
-        query=searchTerm
         searchResults = []
         tweetTextList = []
         for x in range (0, 14):
@@ -28,15 +27,18 @@ def pubQuery(query):
             toReturn+=str(string)
         return toReturn
 
+    '''
     with concurrent.futures.ThreadPoolExecutor() as executor:
         #code to start each scrape as a thread
-        tweets = executor.submit(getTweets(query))
+        tweets = executor.submit(getTweets())
         #end add thread
 
         #add results to return string
-        ret = []
+        ret = list()
         ret.append(tweets.result())
 
+    '''
+    ret.append(getTweets())
+    return ret
 
-        return ret
-
+pubQuery("iran")

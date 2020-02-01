@@ -18,16 +18,16 @@ app = Flask(__name__)
 @app.route("/")
 def query_template():
     queryReq = request.args.get('query')
-    '''
-    pubScore = getSentiment(pubQuery(queryReq))
-    newsScore = getSentiment(newsQuery(queryReq))
-    finScore = getSentiment(finQuery(queryReq))
-    overallScore = pubScore + newsScore + finScore
-    '''
-    pubScore = 0.2
-    newsScore = 0.4
-    finScore = 1.0
-    overallScore = 0.6
+    if (queryReq):
+        pubScore = getSentiment(pubQuery(queryReq))
+        newsScore = getSentiment(newsQuery(queryReq))
+        finScore = getSentiment(finQuery(queryReq))
+        overallScore = pubScore + newsScore + finScore
+    else:
+        pubScore = 0.0
+        newsScore = 0.0
+        finScore = 0.0
+        overallScore = 0.0
     if (overallScore >= 0.7):
         overall = "very positively"
     elif (overallScore >= 0.2):
