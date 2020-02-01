@@ -1,11 +1,25 @@
 
 from twython import Twython
 import datetime
+import praw
 
 import concurrent.futures
 
+
 def pubQuery(query):
-    
+    def SearchReddit():
+        reddit = praw.Reddit(client_id='a0MDpc36OCJQXg', client_secret='uVYddWR6gzHHI_KrwXy2AlqrdXo',
+                            user_agent='Vibe Check')
+
+        search = reddit.subreddit('all').search(query=query, sort='new')
+
+        all_titles = ''
+
+        for submission in search:
+            all_titles = all_titles + submission.title
+
+        return all_titles
+
     def getTweets():
         dank = 'zI15R3JccQKrtPR1l9siC4K9q'
         meme = 'lQQCH7ZLusQqJC8QSk3CG5DS7tTzWHHjgkpdasd0he3a4JTBLe'
@@ -14,8 +28,9 @@ def pubQuery(query):
         twitter = Twython(dank, access_token=ACCESS_TOKEN)
         searchResults = []
         tweetTextList = []
-        for x in range (0, 14):
-            searchResults.append(twitter.search(lang='en', q=query, result_type='popular', until=str(datetime.date.today()-datetime.timedelta(x))))
+        for x in range(0, 14):
+            searchResults.append(twitter.search(lang='en', q=query, result_type='popular', until=str(
+                datetime.date.today()-datetime.timedelta(x))))
         for x in range(0, len(searchResults)):
             for y in range(0, len(searchResults[x].get('statuses'))):
                 initialText = searchResults[x].get('statuses')[y].get('text')
@@ -24,7 +39,7 @@ def pubQuery(query):
                 tweetTextList.append(linklessText)
         toReturn = ""
         for string in tweetTextList:
-            toReturn+=str(string)
+            toReturn += str(string)
         return toReturn
 
     '''
@@ -40,6 +55,8 @@ def pubQuery(query):
     '''
     ret = list()
     ret.append(getTweets())
+    ret.append(SearchReddit())
     return ret
+
 
 pubQuery("iran")
