@@ -6,7 +6,7 @@ def pubQuery(query):
     redditScraper = RedditSpider(query)
 
     def scrapeReddit():
-        redditScraper.parse(redditScraper.search_url)
+        redditScraper.parse(redditScraper.response)
 
     with concurrent.futures.ThreadPoolExecutor() as executor:
         # code to start each scrape as a thread
