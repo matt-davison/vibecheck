@@ -3,6 +3,7 @@
     <head>
     <title>Vibe Check</title>
     <meta charset="utf-8"/>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"/>
     </head>
     <body>
@@ -17,5 +18,64 @@
         <form action="/" method="get">
             <input type="text" name ="query" placeholder="try me!" value="{{query|default("", true)}}"/>
         </form>
+        {% if overall %}
+            <canvas id="canvas" width = "0" height = "0"></canvas>
+            <script>
+            
+            
+            function getVar(variable) {
+                var query = window.location.search.substring(1);
+                var vars = query.split("&");
+                for (var i=0;i<vars.length;i++){
+                    var pair = vars[i].split("=");
+                    if (pair[0] == variable) return pair[1];
+                }
+                return false;
+            }
+            function redraw() {
+                if (getVar("query")) {
+                var gradient = ctx.createLinearGradient(c.width/4, 0, c.width*3/4,0);
+                gradient.addColorStop(0, 'red');
+                gradient.addColorStop(0.5, 'yellow');
+                gradient.addColorStop(1, 'green');
+                ctx.fillStyle = gradient;
+                //draw the rects
+                //rect points
+                var rectWidth = c.width/2;
+                var rectHeight = c.height/6;
+                var rectL = (c.width-rectWidth)/2;
+                var pubRectT = (rectHeight);
+                var newsRectT = (3*rectHeight);
+                var finRectT = (5*rectHeight);
+                ctx.fillRect(rectL, pubRectT, rectWidth/2+({{ data.pubScore }}*rectWidth/2), rectHeight);//pubRect
+                ctx.fillRect(rectL, newsRectT, rectWidth/2+({{ data.newsScore }}*rectWidth/2), rectHeight);//newsRect
+                ctx.fillRect(rectL, finRectT, rectWidth/2+({{ data.finScore }}*rectWidth/2), rectHeight);//finRect
+                //draw the text
+                ctx.fillStyle = 'white';
+                //ctx.font = getFont();
+                ctx.font = "20px Tahoma";
+                ctx.fillText("   Public Opinion", rectL-157, pubRectT+rectHeight/3);
+                ctx.fillText({{ data.pubScore }}, rectL-40, pubRectT+rectHeight*2/3);
+                ctx.fillText("    News Opinion", rectL-160, newsRectT+rectHeight/3);
+                ctx.fillText({{ data.newsScore }}, rectL-40, newsRectT+rectHeight*2/3);
+                ctx.fillText("Financial Opinion", rectL-163, finRectT+rectHeight/3);
+                ctx.fillText({{ data.finScore }}, rectL-40, finRectT+rectHeight*2/3);
+                }
+            }
+            function resizeCanvas() {
+                c.width = window.innerWidth;
+                c.height = window.innerHeight*2/3;
+                redraw();
+            }
+            function initialize() {
+                window.addEventListener('resize', resizeCanvas, false);
+                resizeCanvas();
+            }
+
+            var c = document.getElementById("canvas");
+            var ctx = c.getContext("2d");
+            initialize();
+            </script>
+        {% endif %}
     </body>
 </html>

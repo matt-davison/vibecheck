@@ -20,9 +20,6 @@ def GetTweets(searchTerm):
             tweetTextList.append(linklessText)
     return tweetTextList
 
-
-print(GetTweets('banana'))
-
 import concurrent.futures
 
 def pubQuery(query):

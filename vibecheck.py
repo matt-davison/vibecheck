@@ -38,8 +38,8 @@ def query_template():
         overall = "negatively"
     else:
         overall = "neutrally"
-    
-    return render_template('query.html', query=queryReq, pub=pubScore, news=newsScore, fin=finScore, overall=overall)
+    data = {'pubScore': pubScore, 'newsScore': newsScore, 'finScore': finScore}
+    return render_template('query.html', query=queryReq, overall=overall, data=data)
 
 if __name__ == '__main__':
     app.run()

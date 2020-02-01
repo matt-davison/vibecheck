@@ -3,6 +3,7 @@ body {
     background:#1d2748;
     font-family:Tahoma, Geneva, sans-serif;
     text-align: center;
+    overflow:hidden
 }
 h1 {
     color: #ffffff;
@@ -13,12 +14,12 @@ h1 {
 p,h2,h3 {
     color: #ffffff;
     text-align: center;
-    font-size: larger;
+    font-size: x-large;
     line-height: 150%;
 }
 form {
     line-height: 150%;
 }
 form input {
-    font-size: large;
+    font-size: x-large;
 }
