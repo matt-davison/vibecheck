@@ -3,7 +3,7 @@ from newsapi import NewsApiClient
 
 def newsQuery(query):
     def getNews():
-        api = NewsApiClient(api_key='b13dacd3cd0d475b80da08eec5fafb13')
+        api = NewsApiClient(api_key='bb23405f17aa47e8871e39416c4e06ed')
         all_headlines = ""
         for pageNum in range(1,6):
             all_articles = api.get_everything(q=query, page=pageNum).get('articles')

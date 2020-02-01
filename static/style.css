@@ -1,9 +1,15 @@
+html {
+    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+}
 body {
+    
     margin: 5%;
-    background:#1d2748;
+    /*background:#1d2748;*/
     font-family:Tahoma, Geneva, sans-serif;
     text-align: center;
-    overflow:hidden
+    overflow:hidden;
+    /*background: rgb(2,0,36);*/
+    
 }
 h1 {
     color: #ffffff;
