@@ -11,12 +11,13 @@ def pubQuery(query):
         reddit = praw.Reddit(client_id='a0MDpc36OCJQXg', client_secret='uVYddWR6gzHHI_KrwXy2AlqrdXo',
                             user_agent='Vibe Check')
 
-        search = reddit.subreddit('all').search(query=query, sort='new')
+        search = reddit.subreddit('all').search(query=query, sort='top', time_filter='week')
 
-        all_titles = ''
+        all_titles = ""
 
         for submission in search:
-            all_titles = all_titles + submission.title
+            if (submission is not None):
+                all_titles = all_titles + submission.title
 
         return all_titles
 
@@ -57,6 +58,3 @@ def pubQuery(query):
     ret.append(getTweets())
     ret.append(SearchReddit())
     return ret
-
-
-pubQuery("iran")

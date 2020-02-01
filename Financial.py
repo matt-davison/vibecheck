@@ -3,16 +3,17 @@ from newsapi import NewsApiClient
 
 def finQuery(query):
     def getFinancial():
-        api = NewsApiClient(api_key='c3dc12d37982432690b33c0e91e62a91')
+        api = NewsApiClient(api_key='b13dacd3cd0d475b80da08eec5fafb13')
 
-        all_headlines = ''
+        all_headlines = ""
 
         for pageNum in range(1,6):
             all_articles = api.get_everything(q=query, page=pageNum, domains='cnbc.com, bloomberg.com, forbes.com').get('articles')
 
             for article in all_articles:
                 headline = article.get('title')
-                all_headlines = all_headlines+headline
+                if (headline is not None):
+                    all_headlines = all_headlines+headline
 
         return all_headlines
     '''

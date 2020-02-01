@@ -4,6 +4,7 @@ from Public import pubQuery
 from News import newsQuery
 from Financial import finQuery
 from textblob import TextBlob
+import concurrent.futures
 
 VERY_THRES = 0.4
 THRES = 0.15
@@ -29,10 +30,14 @@ app = Flask(__name__)
 def query_template():
     queryReq = request.args.get('query')
     if (queryReq):
-        pubScore = getSentiment(pubQuery(queryReq))
-        newsScore = getSentiment(newsQuery(queryReq))
-        finScore = getSentiment(finQuery(queryReq))
-        overallScore = (pubScore + newsScore + finScore) / 3
+        with concurrent.futures.ThreadPoolExecutor(max_workers = 3) as executor:
+            pubFuture = executor.submit(pubQuery, queryReq)
+            newsFuture = executor.submit(newsQuery, queryReq)
+            finFuture = executor.submit(finQuery, queryReq)
+            finScore = getSentiment(finFuture.result())
+            newsScore = getSentiment(newsFuture.result())
+            pubScore = getSentiment(pubFuture.result())
+            overallScore = (pubScore + newsScore + finScore) / 3
     else:
         pubScore = 0.0
         newsScore = 0.0
