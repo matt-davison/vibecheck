@@ -20,3 +20,10 @@ With conda just move to the project's root dir and use "conda env create -f envi
 ## API Keys
 
 You might need to replace the api keys used in the project with your own/fresh ones.
+
+## Authors
+Matt Davison (matt-davison)
+Ryan Gniadek (ryangniadek)
+Ben Bernstein (Dolphinos7)
+
+### Created at SheHacksVT Hackathon
