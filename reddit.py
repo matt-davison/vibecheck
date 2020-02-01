@@ -4,11 +4,15 @@ import scrapy
 
 
 class RedditSpider(scrapy.Spider):
-    name = "wsb_spider"
+    def __init__(self, query):
+        self.name = "wsb_spider"
+        self.query = query
 
     def start_requests(self):
+        search_url = 'https://old.reddit.com/r/all/search?q='
+        
         urls = [
-            'https://old.reddit.com/r/wallstreetbets/search?q=iran&restrict_sr=on'
+           search_url+self.query 
         ]
         for url in urls:
             yield scrapy.Request(url=url, callback=self.parse)
