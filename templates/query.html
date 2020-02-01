@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Vibe Check</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    </head>
+    <body>
+        <h1>Vibe Checker.</h1>
+        {% if topic%}
+            The topic <em>{{topic}}</em> is viewed
+        {% else %}
+            Please enter a topic
+        {% endif %}
+    </body>
+</html>
