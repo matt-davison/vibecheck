@@ -23,4 +23,5 @@ You might need to replace the api keys used in the project with your own/fresh o
 
 ## Authors
 Matt Davison (matt-davison), Ryan Gniadek (ryangniadek), Ben Bernstein (Dolphinos7), & Nate Usher (nusher81)
-### Created at SheHacksVT Hackathon
+## Created at SheHacksVT Hackathon
+### -Winner of Qualcomm's Best Networking Hack Award
