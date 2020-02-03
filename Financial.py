@@ -1,9 +1,9 @@
 import concurrent.futures
 from newsapi import NewsApiClient
-
+from Keys import getKey
 def finQuery(query):
     def getFinancial():
-        api = NewsApiClient(api_key='0a72a21885b44307a4757cb55fa83ccf')
+        api = NewsApiClient(api_key=getKey("NewsAPI", "key"))
 
         all_headlines = ""
 

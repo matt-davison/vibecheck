@@ -1,0 +1,13 @@
+{
+    "NewsAPI": {
+        "key": null
+    },
+    "TwitterAPI": { 
+        "key": null,
+        "secret": null
+    },
+    "RedditAPI": {
+        "id": null,
+        "secret": null
+    }
+}

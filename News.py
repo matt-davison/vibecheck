@@ -1,9 +1,10 @@
 import concurrent.futures
 from newsapi import NewsApiClient
+from Keys import getKey
 
 def newsQuery(query):
     def getNews():
-        api = NewsApiClient(api_key='bb23405f17aa47e8871e39416c4e06ed')
+        api = NewsApiClient(api_key=getKey("NewsAPI", "key"))
         all_headlines = ""
         for pageNum in range(1,6):
             all_articles = api.get_everything(q=query, page=pageNum).get('articles')

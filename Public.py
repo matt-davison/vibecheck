@@ -2,13 +2,14 @@
 from twython import Twython
 import datetime
 import praw
-
 import concurrent.futures
-
+from Keys import getKey
 
 def pubQuery(query):
     def SearchReddit():
-        reddit = praw.Reddit(client_id='a0MDpc36OCJQXg', client_secret='uVYddWR6gzHHI_KrwXy2AlqrdXo',
+        id = getKey("RedditAPI", "id")
+        secret = getKey("RedditAPI", "secret")
+        reddit = praw.Reddit(client_id=id, client_secret=secret,
                             user_agent='Vibe Check')
 
         search = reddit.subreddit('all').search(query=query, sort='top', time_filter='week')
@@ -22,11 +23,11 @@ def pubQuery(query):
         return all_titles
 
     def getTweets():
-        dank = 'zI15R3JccQKrtPR1l9siC4K9q'
-        meme = 'lQQCH7ZLusQqJC8QSk3CG5DS7tTzWHHjgkpdasd0he3a4JTBLe'
-        twitter = Twython(dank, meme, oauth_version=2)
+        key = getKey("TwitterAPI", "key")
+        secret = getKey("TwitterAPI", "secret")
+        twitter = Twython(key, secret, oauth_version=2)
         ACCESS_TOKEN = twitter.obtain_access_token()
-        twitter = Twython(dank, access_token=ACCESS_TOKEN)
+        twitter = Twython(key, access_token=ACCESS_TOKEN)
         searchResults = []
         tweetTextList = []
         for x in range(0, 14):

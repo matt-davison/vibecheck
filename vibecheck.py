@@ -5,6 +5,7 @@ from News import newsQuery
 from Financial import finQuery
 from textblob import TextBlob
 import concurrent.futures
+import Keys
 
 VERY_THRES = 0.4
 THRES = 0.15
@@ -57,4 +58,7 @@ def query_template():
     return render_template('query.html', query=queryReq, overall=overall, data=data)
 
 if __name__ == '__main__':
-    app.run()
+    if (Keys.missingKeys(["RedditAPI", "NewsAPI", "TwitterAPI"])):
+        app.run()
+    else:
+        print("Please add keys to 'keys.json'")
