@@ -1,10 +1,10 @@
-# vibecheck
+# VibeCheck
 
 checks the vibe
 
 ## ?
 
-Vibecheck is a webapp that takes a user's query and searches the web for relevant content. This content is categorized (into Public, News, and Financial) and sentiment analysis is performed on the content to provide the user with an analysis of what the internet thinks about their query - in each category. This webapp was designed to help remind users that there are many different perspectives from which we can look at the world.
+VibeCheck is a web app that takes a user's query and searches the web for relevant content. This content is categorized (into Public, News, and Financial) and sentiment analysis is performed on the content to provide the user with an analysis of what the internet thinks about their query - in each category. This web app was designed to help remind users that there are many different perspectives from which we can look at the world. Our project was given the Best Networking Hack award by Qualcomm.
 
 ## Installing
 
