@@ -59,6 +59,6 @@ def query_template():
 
 if __name__ == '__main__':
     if (Keys.missingKeys(["RedditAPI", "NewsAPI", "TwitterAPI"])):
-        app.run()
+        app.run(host = '0.0.0.0')
     else:
         print("Please add keys to 'keys.json'")
