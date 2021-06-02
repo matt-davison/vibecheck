@@ -30,7 +30,7 @@ textblob==0.15.3
 true-encoding==1.0.2
 twython==3.7.0
 update-checker==0.16
-urllib3==1.25.8
+urllib3==1.26.5
 websocket-client==0.57.0
 Werkzeug==0.16.1
 wrapt==1.11.2
